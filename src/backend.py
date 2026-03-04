@@ -51,7 +51,7 @@ def download(links):
         'sleep_interval': 3,
         'match_filter': smart_filter, 
         'format': 'bestaudio/best',
-        
+
         'extractor_args': {'youtube': ['client=android,ios']},
         
         # --- 1. LIMPIEZA DE ARTISTA (REGEX) ---
@@ -81,6 +81,11 @@ def download(links):
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
                 'preferredquality': '192',
+            },
+            # Convertir la imagen a JPG
+            {
+                'key': 'FFmpegThumbnailsConvertor',
+                'format': 'jpg',
             },
             {
                 'key': 'EmbedThumbnail', # ...aquí se incrusta en el MP3

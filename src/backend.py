@@ -52,6 +52,8 @@ def download(links):
         'match_filter': smart_filter, 
         'format': 'bestaudio/best',
         
+        'extractor_args': {'youtube': ['client=android,ios']},
+        
         # --- 1. LIMPIEZA DE ARTISTA (REGEX) ---
         # Creamos una variable 'clean_artist' que toma el Artista y corta todo
         # lo que esté después de una coma, un feat, un & o un ;

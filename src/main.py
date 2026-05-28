@@ -1,4 +1,5 @@
 import sys
+import os
 from backend import *
 
 def climode():
@@ -30,14 +31,15 @@ if __name__ == "__main__":
         gui()
         pass
     else:
+        # Ruta por defecto para la consola
+        default_dest = os.path.join(os.path.expanduser('~'), 'Music')
+        
         if sys.argv[1] in ["help", "--help", "-h"]:
             print("YouTube2MP3 app\n")
             print("Print version")
             print("[-v, --version]\n")
-
             print("Read from file")
             print("[-f file.txt, --file file.txt]\n")
-
             print("CLI version")
             print("[-c, --cli]\n")
 
@@ -49,10 +51,9 @@ if __name__ == "__main__":
                 print("Enter name of file")
                 exit()
 
-            # maybe should delete clean the links?
             links = filemode(sys.argv[2])
             setup()
-            failed = download(links)
+            failed = download(links, default_dest)
 
             if len(failed) == 0:
                 print("All done")
@@ -64,7 +65,7 @@ if __name__ == "__main__":
         elif sys.argv[1] in ["--cli", "-c"]:
             links = climode()
             setup()
-            failed = download(links)
+            failed = download(links, default_dest)
 
             if len(failed) == 0:
                 print("All done")
